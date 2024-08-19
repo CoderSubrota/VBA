@@ -1,0 +1,35 @@
+Private Sub button_Click()
+
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("macro") ' Ensure this is the correct sheet name
+    
+    ' Find the next empty row
+    Dim nextRow As Long
+    nextRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row + 1
+    
+    ' Insert the data into the next empty row
+    ws.Cells(nextRow, 1).Value = fullName.Text
+    ws.Cells(nextRow, 2).Value = fullEmail.Text
+    ws.Cells(nextRow, 3).Value = countryName.Text
+    ws.Cells(nextRow, 4).Value = validProfession.Text
+    ws.Cells(nextRow, 5).Value = cmbGender.Value
+    ws.Cells(nextRow, 6).Value = description.Text
+    
+    ' Clear the form fields
+    fullName.Text = ""
+    fullEmail.Text = ""
+    countryName.Text = ""
+    validProfession.Text = ""
+    cmbGender.Value = ""
+    description.Text = ""
+    
+    MsgBox "Data inserted successfully!"
+
+End Sub
+
+Private Sub UserForm_Initialize()
+    ' Populate Gender ComboBox once when the form initializes
+    cmbGender.Clear
+    cmbGender.AddItem "Male"
+    cmbGender.AddItem "Female"
+End Sub
